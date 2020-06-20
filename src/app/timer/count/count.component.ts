@@ -23,7 +23,7 @@ export class CountComponent implements OnInit {
   @Input() public data: any;
   @Output()
   public onData: EventEmitter<any> = new EventEmitter<any>();
-  public onUpdateData: EventEmitter<{}> = new EventEmitter<{}>();
+  public onUpdateData: EventEmitter<any> = new EventEmitter<any>();
 
   constructor() {}
 
@@ -49,13 +49,9 @@ export class CountComponent implements OnInit {
       this.statusList.push(
         'Started at ' + this.getDateFormat(new Date().toString())
       );
-
+      this.onUpdateData.emit(this.statusList);
       this.intervalId = setInterval(() => {
         this.onData.emit(this.countCtr);
-        this.onUpdateData.emit({
-          logs: this.statusList,
-          counts: this.countCtr,
-        });
         this.countCtr--;
         console.log(this.countCtr);
       }, 1000);
@@ -64,6 +60,7 @@ export class CountComponent implements OnInit {
       this.statusList.push(
         'Paused at ' + this.getDateFormat(new Date().toString())
       );
+      this.onUpdateData.emit(this.statusList);
       this.pausedCount.push('Paused at ' + this.countCtr);
     }
 
