@@ -18,6 +18,7 @@ export class CountComponent implements OnInit {
   myCtr: number;
   pausedCount = [];
   startCount = [];
+  firstStart = true;
 
   @Input() public data: any;
   @Output()
@@ -33,10 +34,17 @@ export class CountComponent implements OnInit {
     this.isStarted = !this.isStarted;
 
     if (this.isStarted === true) {
-      if (value != 0) {
-        this.countCtr = value;
+      if (value) {
+        if (this.firstStart === true) {
+          this.countCtr = value;
+          this.firstStart = false;
+          this.myCtr = null;
+        } else {
+        }
       } else {
-        this.countCtr = 0;
+        if (this.firstStart === true) {
+          this.countCtr = 0;
+        }
       }
       this.statusList.push(
         'Started at ' + this.getDateFormat(new Date().toString())
@@ -75,7 +83,8 @@ export class CountComponent implements OnInit {
   }
   reset() {
     this.myCtr = this.countCtr = null;
-
+    this.firstStart = true;
+    this.pausedCount = [];
     clearInterval(this.intervalId);
     this.statusList.push(
       'Reset at ' + this.getDateFormat(new Date().toString())
