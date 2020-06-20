@@ -1,0 +1,13 @@
+<p>count works!</p>
+<div>
+  <div>
+    <p>Enter Time Limit</p>
+    <input type="number" min="0" #timervalue [(ngModel)]="myCtr" />
+  </div>
+  <div>
+    <button (click)="start(timervalue.value, $event)">Start/Pause</button>
+    <button (click)="reset()">Reset</button>
+  </div>
+  <div *ngFor="let status of pausedCount">{{ status }}</div>
+  <div *ngIf="countCtr != 0">{{ countCtr }}</div>
+</div>

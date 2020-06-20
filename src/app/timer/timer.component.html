@@ -1,0 +1,12 @@
+<p>timer works! {{ onData }}</p>
+<div>
+  <div><app-displaytimer [data]="onData"></app-displaytimer></div>
+  <div>
+    <app-count [data]="timer" (onData)="updateData($event)">{{
+      timer
+    }}</app-count>
+  </div>
+</div>
+
+<app-logs></app-logs>
+<app-timelimit></app-timelimit>

@@ -1,0 +1,63 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="pull-right">
+        <div class="btn-group">
+          <button
+            class="btn"
+            [ngClass]="isGrid ? 'active' : ''"
+            id="grid"
+            (click)="isGrid = true"
+          >
+            Grid
+          </button>
+          <button
+            class="btn"
+            id="list"
+            [ngClass]="isGrid ? '' : 'active'"
+            (click)="isGrid = false"
+          >
+            List
+          </button>
+          <select
+            class="select-option"
+            (change)="priceFilter($event.target.value)"
+          >
+            <option value="0">Filter</option>
+            <option value="1">high to low</option>
+            <option value="2">low to high</option>
+            <option value="3">Reset</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row view-group">
+    <div
+      class="item"
+      *ngFor="let product of products"
+      [ngClass]="isGrid ? 'col-xs-3 col-lg-3' : 'col-xs-6 col-lg-6 '"
+    >
+      <div [ngClass]="isGrid ? 'thumbnail card' : 'row list-card'">
+        <div [ngClass]="isGrid ? '' : 'col-xs-4 col-lg-4'">
+          <img
+            class="group list-group-image img-fluid"
+            src=""
+            alt="{{ product.title }}"
+          />
+        </div>
+        <div class="card-body" [ngClass]="isGrid ? '' : 'col-xs-8 col-lg-8'">
+          <h4 class="group card-title">
+            {{ product.title }}
+          </h4>
+          <div class="row">
+            <div class="col-xs-12 col-md-6">
+              <p class="lead">$ {{ product.price }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
