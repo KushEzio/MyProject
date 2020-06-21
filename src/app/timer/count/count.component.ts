@@ -8,22 +8,23 @@ import { environment } from '../../../environments/environment';
 })
 export class CountComponent implements OnInit {
   isStarted: boolean = false;
-  countvalue: number = 0;
   countCtr: number = 0;
   statusList = [];
-  timerId: any;
-  countDown: number;
-
   intervalId: any;
   myCtr: number;
   pausedCount = [];
-  startCount = [];
+  startCount = 0;
   firstStart = true;
 
   @Input() public data: any;
   @Output()
   public onData: EventEmitter<any> = new EventEmitter<any>();
-  public onUpdateData: EventEmitter<any> = new EventEmitter<any>();
+  @Output() public onUpdateData: EventEmitter<any> = new EventEmitter<any>();
+
+  @Output() public onPausedCount: EventEmitter<any> = new EventEmitter<any>();
+  @Output() public onStartCount: EventEmitter<number> = new EventEmitter<
+    number
+  >();
 
   constructor() {}
 
@@ -49,44 +50,50 @@ export class CountComponent implements OnInit {
       this.statusList.push(
         'Started at ' + this.getDateFormat(new Date().toString())
       );
+      this.startCount += 1;
+      this.onStartCount.emit(this.startCount);
+      // this.onUpdateData.emit(
+      //   'Started at ' + this.getDateFormat(new Date().toString())
+      // );
       this.onUpdateData.emit(this.statusList);
+      // this.onUpdateData.emit(this.countCtr);
       this.intervalId = setInterval(() => {
-        this.onData.emit(this.countCtr);
-        this.countCtr--;
-        console.log(this.countCtr);
+        if (this.countCtr > 0) {
+          this.countCtr--;
+          this.onData.emit(this.countCtr);
+          console.log(this.countCtr);
+        }
       }, 1000);
     } else {
       clearInterval(this.intervalId);
       this.statusList.push(
         'Paused at ' + this.getDateFormat(new Date().toString())
       );
-      this.onUpdateData.emit(this.statusList);
       this.pausedCount.push('Paused at ' + this.countCtr);
+      this.onData.emit(this.countCtr);
+      this.onUpdateData.emit(this.statusList);
+      this.onPausedCount.emit(this.pausedCount);
     }
 
     console.log(this.countCtr);
 
     console.log(this.statusList);
-
-    // this.timerId = setInterval(() => {
-    //   if (this.countDown === 0) {
-    //     clearInterval(this.timerId);
-    //     return;
-    //   } else {
-    //     this.countDown = this.countDown - 1;
-    //     // this.data.changeCounter(this.countDown);
-    //   }
-    // }, 1000);
   }
   reset() {
-    this.myCtr = this.countCtr = null;
     this.firstStart = true;
     this.pausedCount = [];
+    this.startCount = 0;
     clearInterval(this.intervalId);
+    this.myCtr = this.countCtr = null;
     this.statusList.push(
       'Reset at ' + this.getDateFormat(new Date().toString())
     );
+
+    this.statusList = [];
+    this.onUpdateData.emit(this.statusList);
     this.onData.emit(this.myCtr);
+    this.onPausedCount.emit(this.pausedCount);
+    this.onStartCount.emit(this.startCount);
     this.isStarted = false;
   }
 
@@ -99,9 +106,4 @@ export class CountComponent implements OnInit {
       +dateObj.getHours() <= 12 ? 'AM' : 'PM'
     }`;
   }
-
-  // updateData() {
-  //   console.log(this.countCtr);
-  //   this.onData.emit(this.countCtr);
-  // }
 }

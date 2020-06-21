@@ -1,14 +1,43 @@
-<p>timer works! {{ onData }}</p>
-<p *ngFor="let log of logsList">{{ log }}</p>
+<!-- <div><app-displaytimer [data]="onData"></app-displaytimer></div> -->
+<!-- <div>
+    <app-count
+      [data]="timer"
+      (onData)="updateData($event)"
+      (onUpdateData)="updateLogs($event)"
+      >{{ timer }}
+    </app-count>
+  </div> -->
 
-<div>
-  <div><app-displaytimer [data]="onData"></app-displaytimer></div>
-  <div>
-    <app-count [data]="timer" (onData)="updateData($event)">{{
-      timer
-    }}</app-count>
+<!-- <app-logs></app-logs>
+<app-timelimit></app-timelimit> -->
+
+<div class="container">
+  <div class="p1 border">
+    <div class="row">
+      <div class="col-md-5 col-sm-5 col-12">
+        <app-displaytimer [data]="onData">{{ onData }}</app-displaytimer>
+      </div>
+      <div class="col-md-7 col-sm-7 col-12">
+        <app-count
+          [data]="timer"
+          (onData)="updateData($event)"
+          (onStartCount)="StartLogs($event)"
+          (onPausedCount)="PausedLogs($event)"
+          (onUpdateData)="updateLogs($event)"
+          >{{ timer }}
+        </app-count>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-5 col-sm-5 col-12 margin-top-10">
+        <app-logs [mylogs]="logsList"></app-logs>
+      </div>
+      <div class="col-md-7 col-sm-7 col-12 margin-top-10">
+        <app-timelimit
+          [start]="strtCount"
+          [paused]="pausedCount"
+        ></app-timelimit>
+      </div>
+    </div>
   </div>
 </div>
-
-<app-logs (onUpdateData)="updateLogs($event)"></app-logs>
-<app-timelimit></app-timelimit>

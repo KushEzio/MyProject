@@ -1,15 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  OnChanges,
+  SimpleChange,
+  SimpleChanges,
+  DoCheck,
+} from '@angular/core';
 
 @Component({
   selector: 'app-timelimit',
   templateUrl: './timelimit.component.html',
-  styleUrls: ['./timelimit.component.css']
+  styleUrls: ['./timelimit.component.css'],
 })
 export class TimelimitComponent implements OnInit {
+  @Input() start: number = 0;
+  @Input() paused: number = 0;
+  newlogs = 0;
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }
