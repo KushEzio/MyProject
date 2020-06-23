@@ -1,0 +1,8 @@
+<div
+  class="text-center"
+  (scroll)="onScroll($event)"
+  *ngFor="let number of numbers"
+>
+  {{ number }}
+  <button (click)="clickEvent(number)">click me</button>
+</div>

@@ -11,7 +11,7 @@ export class CountComponent implements OnInit {
   countCtr: number = 0;
   statusList = [];
   intervalId: any;
-  myCtr: number;
+  myCtr: number = 0;
   pausedCount = [];
   startCount = 0;
   firstStart = true;
@@ -28,7 +28,9 @@ export class CountComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.myCtr = 0;
+  }
 
   start(value: number, event) {
     // this.countCtr = this.data;

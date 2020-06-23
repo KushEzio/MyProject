@@ -1,5 +1,7 @@
-<!-- <ul *ngIf="mylogs.length > 0" [ngClass]="mylogs.length > 5 ? 'scroll' : ''">
-  <li *ngFor="let log of mylogs">
-    <span class="font-weight-bold">{{ log }}</span>
-  </li>
-</ul> -->
+<div *ngIf="mylogs">
+  <ul *ngIf="mylogs.length > 0" [ngClass]="mylogs.length > 5 ? 'scroll' : ''">
+    <li *ngFor="let log of mylogs">
+      <span class="font-weight-bold">{{ log }}</span>
+    </li>
+  </ul>
+</div>

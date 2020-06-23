@@ -7,7 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class DisplaytimerComponent implements OnInit {
   constructor() {}
-  @Input() data: any;
+  @Input() data: any = 0;
 
   ngOnInit(): void {}
 }

@@ -1,20 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-timer',
   templateUrl: './timer.component.html',
   styleUrls: ['./timer.component.css'],
 })
-export class TimerComponent implements OnInit {
+export class TimerComponent {
   public timer: any;
-  onData: number;
+  onData: number = 0;
   logsList: any;
   public strtCount: number;
   public pausedCount: any;
 
   constructor() {}
-
-  ngOnInit(): void {}
 
   updateData(event: any) {
     console.log(event);

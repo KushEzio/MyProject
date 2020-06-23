@@ -12,7 +12,7 @@
   margin-top: 20px;
 }
 .thumbnail {
-  height: 9rem;
+  height: 20rem;
   margin-bottom: 30px;
   padding: 0px;
   -webkit-border-radius: 0px;
@@ -41,4 +41,8 @@
 
 .item.list-group-item:after {
   clear: both;
+}
+.myimage {
+  height: 10rem;
+  margin-left: 2rem;
 }

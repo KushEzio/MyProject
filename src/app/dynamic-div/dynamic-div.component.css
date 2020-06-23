@@ -1,0 +1,10 @@
+div {
+  height: 200px;
+  width: 100%;
+  border: 2px solid red;
+  margin: 1px;
+  background-color: yellow;
+}
+button {
+  margin-top: 4rem;
+}

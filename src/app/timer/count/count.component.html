@@ -1,15 +1,22 @@
 <div>
-  <p>Enter Time Limit</p>
+  <label>Enter Time Limit</label>
   <input
     type="number"
     min="0"
     #timervalue
-    [(ngModel)]="myCtr"
+    [(ngModel)]="countCtr"
     [disabled]="!firstStart"
+    class="form-control"
   />
 </div>
 <div>
-  <button (click)="start(timervalue.value, $event)">Start/Pause</button>
-  <button (click)="reset()">Reset</button>
+  <button
+    class="btn btn-primary"
+    [disabled]="countCtr < 1"
+    (click)="start(timervalue.value, $event)"
+  >
+    Start/Pause
+  </button>
+  <button class="btn btn-danger" (click)="reset()">Reset</button>
 </div>
-<div *ngFor="let status of pausedCount">{{ status }}</div>
+<p *ngFor="let status of pausedCount">{{ status }}</p>

@@ -1,8 +1,42 @@
 <div>
-  <p>Enter Time Limit</p>
-  <input type="number" min="0" #timervalue />
+  <label for="timerLimit1">Enter Time Limit</label>
+  <input
+    id="timerLimit1"
+    name="timerLimit"
+    class="form-control"
+    (ngModelChange)="modelChanged($event)"
+    type="number"
+    [(ngModel)]="timerLimit"
+    [disabled]="!firstStart"
+    min="0"
+  />
 </div>
 <div>
-  <button>Start/Pause</button>
-  <button>Reset</button>
+  <button
+    *ngIf="!isStarted"
+    type="button"
+    class="btn btn-primary"
+    (click)="start(true)"
+    [disabled]="countDown === 0"
+  >
+    Start
+  </button>
+
+  <button
+    *ngIf="isStarted"
+    type="button"
+    class="btn btn-secondary"
+    (click)="pause(false)"
+    [disabled]="countDown === 0"
+  >
+    Pause
+  </button>
+  <button type="button" class="btn btn-danger margin-left-15" (click)="reset()">
+    Reset
+  </button>
 </div>
+<ul *ngIf="paused.length > 0" [ngClass]="paused.length > 6 ? 'scroll' : ''">
+  <li *ngFor="let time of paused">
+    <span class="font-weight-bold">{{ time }}</span>
+  </li>
+</ul>

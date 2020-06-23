@@ -14,10 +14,13 @@ import {
   styleUrls: ['./timelimit.component.css'],
 })
 export class TimelimitComponent implements OnInit {
-  @Input() start: number = 0;
-  @Input() paused: number = 0;
+  @Input() start: number;
+  @Input() paused: number;
   newlogs = 0;
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.start = 0;
+    this.paused = 0;
+  }
 }

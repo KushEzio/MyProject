@@ -1,0 +1,37 @@
+<!-- <p>students works now!</p> -->
+<div class="container">
+  <table
+    class="table table-striped table-bordered table-hover table-responsive-md"
+  >
+    <thead class="thead-dark">
+      <!-- <tr>
+        <th (click)="sorting($event)">title</th>
+
+        <th (click)="sorting($event)">type</th>
+
+        <th (click)="sorting($event)">price</th>
+      </tr> -->
+      <!-- <th *ngFor="let key; of"></th> -->
+      <tr>
+        <th (click)="sorting($event)" *ngFor="let key of header">
+          {{ key }}
+        </th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let student of students; let studentindex = index">
+        <td *ngFor="let key of header">
+          {{ student[key] }}
+          <!-- </td>
+        <td>{{ student.title }}</td>
+
+        <td>{{ student.type }}</td>
+
+        <td>{{ student.price }}</td>
+        <td>{{ student.description }}</td> -->
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

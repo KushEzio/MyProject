@@ -43,7 +43,8 @@
         <div [ngClass]="isGrid ? '' : 'col-xs-4 col-lg-4'">
           <img
             class="group list-group-image img-fluid"
-            src=""
+            [ngClass]="isGrid ? 'myimage' : ''"
+            src="{{ product.filename }}"
             alt="{{ product.title }}"
           />
         </div>
@@ -61,3 +62,7 @@
     </div>
   </div>
 </div>
+
+<!-- <div *ngFor="let prod of allproducts | async">
+  {{ prod.title }}
+</div> -->

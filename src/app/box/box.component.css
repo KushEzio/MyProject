@@ -1,16 +1,8 @@
 div {
   background-color: lightgrey;
-
   border: 9px solid green;
   padding: 1rem;
   margin: 2rem;
   left: 25%;
   top: 25%;
 }
-/* #first {
-  width: 100px;
-  height: 100px;
-  background: red;
-  overflow: hidden;
-  position: relative;
-} */

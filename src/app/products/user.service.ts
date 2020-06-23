@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { throwError } from 'rxjs';
+import { throwError, Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 import { Product } from './product.model';
@@ -29,5 +29,10 @@ export class UserService {
     return this._httpClient
       .get(this.Get_Products)
       .pipe(catchError(this.handleError));
+  }
+
+  // trying async
+  getProducts2(): Observable<Product[]> {
+    return this._httpClient.get<Product[]>(this.Get_Products);
   }
 }
