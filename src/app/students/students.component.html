@@ -11,6 +11,7 @@
 
         <th (click)="sorting($event)">price</th>
       </tr> -->
+
       <!-- <th *ngFor="let key; of"></th> -->
       <tr>
         <th (click)="sorting($event)" *ngFor="let key of header">
@@ -23,8 +24,8 @@
       <tr *ngFor="let student of students; let studentindex = index">
         <td *ngFor="let key of header">
           {{ student[key] }}
-          <!-- </td>
-        <td>{{ student.title }}</td>
+
+          <!-- <td>{{ student.title }}</td>
 
         <td>{{ student.type }}</td>
 

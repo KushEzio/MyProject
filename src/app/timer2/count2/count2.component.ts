@@ -1,4 +1,9 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  ɵsetCurrentInjector,
+} from '@angular/core';
 
 import { MytimeService } from '../mytime.service';
 
@@ -73,7 +78,10 @@ export class Count2Component implements OnInit, OnDestroy {
   }
 
   modelChanged(ev) {
+    // console.log(`ev` + ev);
+    // console.log('countdown' + this.countDown);
     this.countDown = +ev;
+    // console.log('countdown' + this.countDown);
   }
 
   pause(flag) {

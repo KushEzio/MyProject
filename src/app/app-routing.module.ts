@@ -29,7 +29,7 @@ const routes: Routes = [
     // RouterModule.forRoot(routes),
     RouterModule.forRoot(routes, {
       preloadingStrategy: PreloadAllModules,
-      enableTracing: true,
+      enableTracing: false,
     }),
   ],
 

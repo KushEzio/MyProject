@@ -15,13 +15,13 @@ export class TimerComponent {
   constructor() {}
 
   updateData(event: any) {
-    console.log(event);
+    // console.log(event);
     this.onData = event;
     // alert(this.onData);
   }
 
   updateLogs(event: any) {
-    console.log(event);
+    // console.log(event);
     // alert('flkfldk');
 
     this.logsList = event;

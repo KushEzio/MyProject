@@ -63,7 +63,7 @@ export class CountComponent implements OnInit {
         if (this.countCtr > 0) {
           this.countCtr--;
           this.onData.emit(this.countCtr);
-          console.log(this.countCtr);
+          // console.log(this.countCtr);
         }
       }, 1000);
     } else {
@@ -77,9 +77,9 @@ export class CountComponent implements OnInit {
       this.onPausedCount.emit(this.pausedCount);
     }
 
-    console.log(this.countCtr);
+    // console.log(this.countCtr);
 
-    console.log(this.statusList);
+    // console.log(this.statusList);
   }
   reset() {
     this.firstStart = true;

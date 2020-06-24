@@ -3,6 +3,8 @@
   (scroll)="onScroll($event)"
   *ngFor="let number of numbers"
 >
-  {{ number }}
-  <button (click)="clickEvent(number)">click me</button>
+  <!-- {{ number }} -->
+  <button class="btn btn-primary" (click)="clickEvent(number)">
+    Button {{ number }}
+  </button>
 </div>
