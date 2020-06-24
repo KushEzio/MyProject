@@ -14,7 +14,7 @@ import { Logs2Component } from './timer2/logs2/logs2.component';
 import { Timelimit2Component } from './timer2/timelimit2/timelimit2.component';
 import { BoxComponent } from './box/box.component';
 import { StudentsComponent } from './students/students.component';
-import { SortingDataComponent } from './sorting-data/sorting-data.component';
+
 import { DynamicDivComponent } from './dynamic-div/dynamic-div.component';
 
 @NgModule({
@@ -29,7 +29,7 @@ import { DynamicDivComponent } from './dynamic-div/dynamic-div.component';
     Timelimit2Component,
     BoxComponent,
     StudentsComponent,
-    SortingDataComponent,
+
     DynamicDivComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],

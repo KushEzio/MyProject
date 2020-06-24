@@ -45,9 +45,9 @@ export class Count2Component implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    if (this.countDown === 0) {
-      clearInterval(this.timerId);
-    }
+    this.countDown = 0;
+    this._mytime.changeCounter(this.countDown);
+    clearInterval(this.timerId);
   }
 
   start(flag) {
