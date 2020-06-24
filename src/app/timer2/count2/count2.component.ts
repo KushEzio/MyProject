@@ -13,7 +13,7 @@ import { MytimeService } from '../mytime.service';
   styleUrls: ['./count2.component.css'],
 })
 export class Count2Component implements OnInit, OnDestroy {
-  constructor(private _mytime: MytimeService) {}
+  constructor(private myTime: MytimeService) {}
   timerLimit: number;
   countDown: number;
   statusList = [];
@@ -22,7 +22,7 @@ export class Count2Component implements OnInit, OnDestroy {
   paused: any;
   isStarted: boolean;
   timerId: any;
-  firstStart: boolean = true;
+  firstStart = true;
 
   ngOnInit(): void {
     this.paused = [];
@@ -42,16 +42,16 @@ export class Count2Component implements OnInit, OnDestroy {
     this.statusList = [];
     this.firstStart = true;
     clearInterval(this.timerId);
-    // this._mytime.currentCounter(this.countDown);
-    this._mytime.changeCounter(this.countDown);
-    this._mytime.logs.emit(this.statusList);
-    this._mytime.startCtr.emit(this.startCtr);
-    this._mytime.pauseCtr.emit(this.pauseCtr);
+    // this.myTime.currentCounter(this.countDown);
+    this.myTime.changeCounter(this.countDown);
+    this.myTime.logs.emit(this.statusList);
+    this.myTime.startCtr.emit(this.startCtr);
+    this.myTime.pauseCtr.emit(this.pauseCtr);
   }
 
   ngOnDestroy() {
     this.countDown = 0;
-    this._mytime.changeCounter(this.countDown);
+    this.myTime.changeCounter(this.countDown);
     clearInterval(this.timerId);
   }
 
@@ -59,11 +59,11 @@ export class Count2Component implements OnInit, OnDestroy {
     this.firstStart = false;
     if (this.timerLimit !== 0) {
       this.startCtr++;
-      this._mytime.startCtr.emit(this.startCtr);
+      this.myTime.startCtr.emit(this.startCtr);
       this.statusList.push(
         'Started at ' + this.getDateFormat(new Date().toString())
       );
-      this._mytime.logs.emit(this.statusList);
+      this.myTime.logs.emit(this.statusList);
       this.isStarted = flag;
       this.timerId = setInterval(() => {
         if (this.countDown === 0) {
@@ -71,7 +71,7 @@ export class Count2Component implements OnInit, OnDestroy {
           return;
         } else {
           this.countDown = this.countDown - 1;
-          this._mytime.changeCounter(this.countDown);
+          this.myTime.changeCounter(this.countDown);
         }
       }, 1000);
     }
@@ -87,7 +87,7 @@ export class Count2Component implements OnInit, OnDestroy {
   pause(flag) {
     this.isStarted = flag;
     this.pauseCtr++;
-    this._mytime.pauseCtr.emit(this.pauseCtr);
+    this.myTime.pauseCtr.emit(this.pauseCtr);
     this.statusList.push(
       'Paused at ' + this.getDateFormat(new Date().toString())
     );

@@ -9,10 +9,10 @@ import { MytimeService } from '../mytime.service';
 export class Logs2Component implements OnInit {
   mylogs: [];
 
-  constructor(private _mytime: MytimeService) {}
+  constructor(private myTime: MytimeService) {}
 
   ngOnInit(): void {
-    this._mytime.logs.subscribe((log) => {
+    this.myTime.logs.subscribe((log) => {
       this.mylogs = log;
     });
   }

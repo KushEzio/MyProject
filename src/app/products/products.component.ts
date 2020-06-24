@@ -11,7 +11,7 @@ import { Product } from './product.model';
   styleUrls: ['./products.component.css'],
 })
 export class ProductsComponent implements OnInit, OnDestroy {
-  constructor(private _userService: UserService) {}
+  constructor(private userService: UserService) {}
   products: Product[] = [];
   isGrid: boolean;
   destroy$: Subject<boolean> = new Subject<boolean>();
@@ -25,7 +25,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
   initProducts() {
     this.getnewProducts();
-    this._userService
+    this.userService
       .getProducts()
       .pipe(takeUntil(this.destroy$))
       .subscribe((data: any[]) => {
@@ -59,6 +59,6 @@ export class ProductsComponent implements OnInit, OnDestroy {
     this.destroy$.complete();
   }
   getnewProducts() {
-    this.allproducts = this._userService.getProducts2();
+    this.allproducts = this.userService.getProducts2();
   }
 }

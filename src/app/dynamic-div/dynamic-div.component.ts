@@ -11,7 +11,7 @@ export class DynamicDivComponent implements OnInit, OnDestroy {
   onScroll(event) {
     // console.log('i am scrolling');
     const count = this.numbers.length;
-    let numbers = Array(10)
+    const numbers = Array(10)
       .fill(0)
       .map((x, i) => i + count + 1);
     // console.log(count, numbers);
@@ -27,8 +27,8 @@ export class DynamicDivComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     // console.log('jjljljjl : ' + this.numbers);
   }
-  clickEvent(number) {
-    alert(`Button '${number}' is clicked`);
+  clickEvent(number1: number) {
+    alert(`Button '${number1}' is clicked`);
   }
 
   ngOnDestroy() {

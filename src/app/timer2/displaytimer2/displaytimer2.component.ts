@@ -7,11 +7,11 @@ import { MytimeService } from '../mytime.service';
   styleUrls: ['./displaytimer2.component.css'],
 })
 export class Displaytimer2Component implements OnInit {
-  constructor(private _mytime: MytimeService) {}
+  constructor(private myTime: MytimeService) {}
   countDown: number;
 
   ngOnInit(): void {
     this.countDown = 0;
-    this._mytime.currentCounter.subscribe((count) => (this.countDown = count));
+    this.myTime.currentCounter.subscribe((count) => (this.countDown = count));
   }
 }

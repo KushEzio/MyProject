@@ -7,15 +7,15 @@ import { MytimeService } from '../mytime.service';
   styleUrls: ['./timelimit2.component.css'],
 })
 export class Timelimit2Component implements OnInit {
-  startCtr: number = 0;
-  pauseCtr: number = 0;
-  constructor(private _mytime: MytimeService) {}
+  startCtr = 0;
+  pauseCtr = 0;
+  constructor(private myTime: MytimeService) {}
 
   ngOnInit(): void {
-    this._mytime.startCtr.subscribe((data) => {
+    this.myTime.startCtr.subscribe((data) => {
       this.startCtr = data;
     });
-    this._mytime.pauseCtr.subscribe((data) => {
+    this.myTime.pauseCtr.subscribe((data) => {
       this.pauseCtr = data;
     });
   }

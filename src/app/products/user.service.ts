@@ -9,9 +9,9 @@ import { Product } from './product.model';
   providedIn: 'root',
 })
 export class UserService {
-  constructor(private _httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) {}
   productList: Product[] = [];
-  private Get_Products = 'assets/products.json';
+  private getMyProducts = 'assets/products.json';
 
   handleError(error: HttpErrorResponse) {
     let errorMessage = 'Unknown error!';
@@ -26,13 +26,13 @@ export class UserService {
     return throwError(errorMessage);
   }
   getProducts() {
-    return this._httpClient
-      .get(this.Get_Products)
+    return this.httpClient
+      .get(this.getMyProducts)
       .pipe(catchError(this.handleError));
   }
 
   // trying async
   getProducts2(): Observable<Product[]> {
-    return this._httpClient.get<Product[]>(this.Get_Products);
+    return this.httpClient.get<Product[]>(this.getMyProducts);
   }
 }

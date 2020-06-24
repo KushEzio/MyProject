@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class TimerComponent {
   public timer: any;
-  onData: number = 0;
+  dataOn = 0;
   logsList: any;
   public strtCount: number;
   public pausedCount: any;
@@ -16,8 +16,8 @@ export class TimerComponent {
 
   updateData(event: any) {
     // console.log(event);
-    this.onData = event;
-    // alert(this.onData);
+    this.dataOn = event;
+    // alert(this.dataOn);
   }
 
   updateLogs(event: any) {

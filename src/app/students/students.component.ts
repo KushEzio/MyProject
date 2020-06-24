@@ -9,13 +9,13 @@ import { Students } from './student.model';
   styleUrls: ['./students.component.css'],
 })
 export class StudentsComponent implements OnInit {
-  constructor(private _studDataService: StudDataService) {}
+  constructor(private studDataService: StudDataService) {}
   students: Students[] = [];
   launchStudents: any;
   mycol: string;
-  fclick: boolean = false;
-  sclick: boolean;
-  tclick: boolean;
+  // fclick: boolean = false;
+  // sclick: boolean;
+  // tclick: boolean;
 
   header: any;
   order: number;
@@ -27,7 +27,7 @@ export class StudentsComponent implements OnInit {
     this.initStudents();
   }
   initStudents() {
-    this._studDataService.getStudents().subscribe((data: any[]) => {
+    this.studDataService.getStudents().subscribe((data: any[]) => {
       this.launchStudents = data.slice(0, 40).map((product) => {
         return {
           title: product.title,
@@ -58,29 +58,29 @@ export class StudentsComponent implements OnInit {
 
   sort_by_key_all(array, key, order) {
     key = key.trim();
-    if (key != this.lastorder) {
+    if (key !== this.lastorder) {
       // alert(key + order);
       this.order = 1;
       this.lastorder = key;
-      return array.sort(function (a, b) {
-        var x = a[key];
-        var y = b[key];
+      return array.sort((a, b) => {
+        const x = a[key];
+        const y = b[key];
         return x < y ? -1 : x > y ? 1 : 0;
       });
     } else {
       // alert(key + order);
-      if (order == 0 && key == this.lastorder) {
+      if (order === 0 && key === this.lastorder) {
         this.order += 1;
-        return array.sort(function (a, b) {
-          var x = a[key];
-          var y = b[key];
+        return array.sort((a, b) => {
+          const x = a[key];
+          const y = b[key];
           return x < y ? -1 : x > y ? 1 : 0;
         });
-      } else if (order == 1) {
+      } else if (order === 1) {
         this.order += 1;
-        return array.sort(function (a, b) {
-          var x = a[key];
-          var y = b[key];
+        return array.sort((a, b) => {
+          const x = a[key];
+          const y = b[key];
           return x > y ? -1 : x < y ? 1 : 0;
         });
       } else {
