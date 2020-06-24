@@ -32,7 +32,7 @@ export class DynamicDivComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    console.log('removing');
-    // this.numbers = [];
+    // console.log('removing');
+    this.numbers = [];
   }
 }

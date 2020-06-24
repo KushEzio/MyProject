@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
+// import { HeaderComponent } from './header/header.component';
 
 import { Timer2Component } from './timer2/timer2.component';
 import { Count2Component } from './timer2/count2/count2.component';
@@ -20,7 +20,7 @@ import { DynamicDivComponent } from './dynamic-div/dynamic-div.component';
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
+    // HeaderComponent,
 
     Timer2Component,
     Count2Component,
