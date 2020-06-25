@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { takeUntil } from 'rxjs/operators';
-import { Subject, Observable } from 'rxjs';
+import { Subject } from 'rxjs';
 
 import { UserService } from './user.service';
 import { Product } from './product.model';
@@ -17,14 +17,14 @@ export class ProductsComponent implements OnInit, OnDestroy {
   destroy$: Subject<boolean> = new Subject<boolean>();
   launchProducts: any;
 
-  allproducts: Observable<Product[]>;
+  // allproducts: Observable<Product[]>;
 
   ngOnInit(): void {
     this.initProducts();
   }
 
   initProducts() {
-    this.getnewProducts();
+    // this.getnewProducts();
     this.userService
       .getProducts()
       .pipe(takeUntil(this.destroy$))
@@ -58,7 +58,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
     this.destroy$.next(true);
     this.destroy$.complete();
   }
-  getnewProducts() {
-    this.allproducts = this.userService.getProducts2();
-  }
+  // getnewProducts() {
+  //   this.allproducts = this.userService.getProducts2();
+  // }
 }

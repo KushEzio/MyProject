@@ -1,12 +1,12 @@
-import { Injectable, EventEmitter, OnDestroy } from '@angular/core';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { Injectable, EventEmitter } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
-export class MytimeService implements OnDestroy {
+export class MytimeService {
   constructor() {}
-  destroy$: Subject<boolean> = new Subject<boolean>();
+  // destroy$: Subject<boolean> = new Subject<boolean>();
   private messageSource = new BehaviorSubject(0);
   currentCounter = this.messageSource.asObservable();
 
@@ -16,10 +16,5 @@ export class MytimeService implements OnDestroy {
 
   changeCounter(count: number) {
     this.messageSource.next(count);
-  }
-  ngOnDestroy() {
-    // this.messageSource.unsubscribe();
-    // this.destroy$.next();
-    // this.destroy$.complete();
   }
 }

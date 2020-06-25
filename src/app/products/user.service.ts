@@ -32,7 +32,7 @@ export class UserService {
   }
 
   // trying async
-  getProducts2(): Observable<Product[]> {
-    return this.httpClient.get<Product[]>(this.getMyProducts);
-  }
+  // getProducts2(): Observable<Product[]> {
+  //   return this.httpClient.get<Product[]>(this.getMyProducts);
+  // }
 }
