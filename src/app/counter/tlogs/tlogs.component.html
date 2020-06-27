@@ -2,7 +2,7 @@
   <ul [ngClass]="logTimer.length > 5 ? 'scroll' : ''">
     <li *ngFor="let log of logTimer">
       <span class="font-weight-bold"
-        >{{ log.status ? "Started" : "Paused" }} at {{ log.timestamp }}</span
+        >{{ log.status ? "Started" : "Paused" }} at {{ log.mytime }}</span
       >
     </li>
   </ul>

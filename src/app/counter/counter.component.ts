@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CounterComponent implements OnInit {
   timerValue = 0;
-  timerObject: { timestamp: string; status: boolean; value: number }[] = [];
+  timerObject: { mytime: string; status: boolean; value: number }[] = [];
   timerStarted = false;
   startedCountValue = 0;
   pausedCountValue = 0;
@@ -22,7 +22,7 @@ export class CounterComponent implements OnInit {
     console.log('fdffd');
     debugger;
     this.timerObject.push({
-      timestamp: this.getDateFormat(new Date().toString()),
+      mytime: this.getDateFormat(new Date().toString()),
       status: event.statusTimer,
       value: this.timerValue,
     });

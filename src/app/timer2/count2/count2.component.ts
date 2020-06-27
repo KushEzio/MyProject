@@ -3,9 +3,12 @@ import {
   OnInit,
   OnDestroy,
   ɵsetCurrentInjector,
+  ViewChild,
+  ElementRef,
 } from '@angular/core';
 
 import { MytimeService } from '../mytime.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-count2',
@@ -13,97 +16,56 @@ import { MytimeService } from '../mytime.service';
   styleUrls: ['./count2.component.css'],
 })
 export class Count2Component implements OnInit, OnDestroy {
-  constructor(private myTime: MytimeService) {}
-  timerLimit: number;
-  countDown: number;
-  statusList = [];
-  startCtr = 0;
-  pauseCtr = 0;
-  paused: any;
-  isStarted: boolean;
-  timerId: any;
+  timerNumber = 0;
+  timerStatus: boolean;
+  timerlogs = [];
+  @ViewChild('timervalue') inputTxt: ElementRef;
   firstStart = true;
+  timerEmitter: Subscription;
+  pausedCountEmitter: Subscription;
+  constructor(private myTime: MytimeService) {}
 
   ngOnInit(): void {
-    this.paused = [];
-    this.timerLimit = 0;
-    this.countDown = 0;
-    this.isStarted = false;
-    this.firstStart = true;
+    this.timerEmitter = this.myTime.timerEmitter.subscribe((value) => {
+      this.timerNumber = value.valueTimer;
+      this.timerStatus = value.statusTimer;
+    });
+
+    this.pausedCountEmitter = this.myTime.pausedLogValue.subscribe((value) => {
+      this.timerlogs.push(value);
+    });
   }
 
-  reset() {
-    this.paused = [];
-    this.isStarted = false;
-    this.countDown = 0;
-    this.timerLimit = 0;
-    this.startCtr = 0;
-    this.pauseCtr = 0;
-    this.statusList = [];
+  onStart(values: number) {
+    debugger;
+    const myval = values;
+    if (this.firstStart === true) {
+      this.firstStart = false;
+      this.timerNumber = myval;
+    }
+    if (myval > 0) {
+      if (this.timerNumber === 0) {
+      } else {
+        this.timerNumber = myval;
+        this.myTime.timerEmitter.next({
+          valueTimer: this.timerNumber,
+          statusTimer: !this.timerStatus,
+        });
+      }
+    }
+  }
+
+  onReset() {
+    this.myTime.timerReset.next(true);
+    this.timerStatus = false;
+    this.inputTxt.nativeElement.value = 0;
+    this.timerNumber = 0;
+    this.timerlogs = [];
     this.firstStart = true;
-    clearInterval(this.timerId);
-    // this.myTime.currentCounter(this.countDown);
-    this.myTime.changeCounter(this.countDown);
-    this.myTime.logs.emit(this.statusList);
-    this.myTime.startCtr.emit(this.startCtr);
-    this.myTime.pauseCtr.emit(this.pauseCtr);
   }
 
   ngOnDestroy() {
-    this.countDown = 0;
-    this.myTime.changeCounter(this.countDown);
-    clearInterval(this.timerId);
-  }
-
-  start(flag) {
-    this.firstStart = false;
-    if (this.timerLimit !== 0) {
-      this.startCtr++;
-      this.myTime.startCtr.emit(this.startCtr);
-      this.statusList.push(
-        'Started at ' + this.getDateFormat(new Date().toString())
-      );
-      this.myTime.logs.emit(this.statusList);
-      this.isStarted = flag;
-      this.timerId = setInterval(() => {
-        if (this.countDown === 0) {
-          clearInterval(this.timerId);
-          return;
-        } else {
-          this.countDown = this.countDown - 1;
-          this.myTime.changeCounter(this.countDown);
-        }
-      }, 1000);
-    }
-  }
-
-  modelChanged(ev) {
-    // console.log(`ev` + ev);
-    // console.log('countdown' + this.countDown);
-    this.countDown = +ev;
-    // console.log('countdown' + this.countDown);
-  }
-
-  pause(flag) {
-    this.isStarted = flag;
-    this.pauseCtr++;
-    this.myTime.pauseCtr.emit(this.pauseCtr);
-    this.statusList.push(
-      'Paused at ' + this.getDateFormat(new Date().toString())
-    );
-    clearInterval(this.timerId);
-    if (this.countDown !== 0) {
-      this.paused.push('Paused at ' + this.countDown);
-    }
-  }
-
-  getDateFormat(date) {
-    const dateObj = new Date(date);
-    return `${dateObj.getDate()}-${
-      +dateObj.getMonth() + 1
-    }-${dateObj.getFullYear()}
-    ${dateObj.getHours()}:${dateObj.getMinutes()}:${dateObj.getSeconds()} ${
-      +dateObj.getHours() <= 12 ? 'AM' : 'PM'
-    }`;
+    this.myTime.timerEmitter.unsubscribe();
+    this.myTime.pausedLogValue.unsubscribe();
   }
 }

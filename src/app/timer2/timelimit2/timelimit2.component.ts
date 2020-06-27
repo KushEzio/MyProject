@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { MytimeService } from '../mytime.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-timelimit2',
@@ -7,16 +8,19 @@ import { MytimeService } from '../mytime.service';
   styleUrls: ['./timelimit2.component.css'],
 })
 export class Timelimit2Component implements OnInit {
-  startCtr = 0;
-  pauseCtr = 0;
+  @Input() start = 0;
+  @Input() paused = 0;
+  timerEmitter: Subscription;
+  timerReset: Subscription;
   constructor(private myTime: MytimeService) {}
 
   ngOnInit(): void {
-    this.myTime.startCtr.subscribe((data) => {
-      this.startCtr = data;
+    this.timerEmitter = this.myTime.timerEmitter.subscribe((value) => {
+      value.statusTimer ? this.start++ : this.paused++;
     });
-    this.myTime.pauseCtr.subscribe((data) => {
-      this.pauseCtr = data;
+    this.timerReset = this.myTime.timerReset.subscribe(() => {
+      this.start = 0;
+      this.paused = 0;
     });
   }
 }

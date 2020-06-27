@@ -6,7 +6,7 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./tlogs.component.css'],
 })
 export class TlogsComponent implements OnInit {
-  @Input() logTimer: { timestamp: Date; status: boolean }[] = [];
+  @Input() logTimer: { mytime: Date; status: boolean }[] = [];
 
   constructor() {}
 

@@ -1,5 +1,5 @@
-import { Injectable, EventEmitter } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -7,14 +7,11 @@ import { BehaviorSubject } from 'rxjs';
 export class MytimeService {
   constructor() {}
   // destroy$: Subject<boolean> = new Subject<boolean>();
-  private messageSource = new BehaviorSubject(0);
-  currentCounter = this.messageSource.asObservable();
-
-  logs = new EventEmitter<any>();
-  pauseCtr = new EventEmitter<number>();
-  startCtr = new EventEmitter<number>();
-
-  changeCounter(count: number) {
-    this.messageSource.next(count);
-  }
+  // private messageSource = new BehaviorSubject(0);
+  timerEmitter = new Subject<{
+    valueTimer: number;
+    statusTimer: boolean;
+  }>();
+  pausedLogValue = new Subject<number>();
+  timerReset = new Subject<boolean>();
 }
