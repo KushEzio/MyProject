@@ -62,11 +62,9 @@ export class StudentsComponent implements OnInit {
       // alert(key + order);
       this.order = 1;
       this.lastorder = key;
-      return array.sort((a, b) => {
-        const x = a[key];
-        const y = b[key];
-        return x < y ? -1 : x > y ? 1 : 0;
-      });
+      return array.sort((a, b) =>
+        a[key] < b[key] ? -1 : a[key] > b[key] ? 1 : 0
+      );
     } else {
       // alert(key + order);
       if (order === 0 && key === this.lastorder) {

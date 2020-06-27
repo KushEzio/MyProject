@@ -1,4 +1,4 @@
-div {
+.wrapper {
   height: 200px;
   width: 200px;
   border: 2px solid black;
@@ -6,6 +6,6 @@ div {
   background-color: lightgreen;
   display: inline-block;
 }
-button {
+.wrapper button {
   margin-top: 4rem;
 }

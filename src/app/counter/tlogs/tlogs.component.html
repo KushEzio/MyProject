@@ -1,0 +1,9 @@
+<div *ngIf="countDownLog">
+  <ul [ngClass]="countDownLog.length > 5 ? 'scroll' : ''">
+    <li *ngFor="let log of countDownLog">
+      <span class="font-weight-bold"
+        >{{ log.status ? "Started" : "Paused" }} at {{ log.timestamp }}</span
+      >
+    </li>
+  </ul>
+</div>

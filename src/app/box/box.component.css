@@ -1,4 +1,5 @@
-div {
+.mydiv,
+.mydiv div {
   background-color: lightgrey;
   border: 9px solid green;
   padding: 1rem;

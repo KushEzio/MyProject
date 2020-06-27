@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="p1 border">
+    <div class="row">
+      <div class="col-md-5 col-sm-5 col-12">
+        <app-disptimer [countDownValue]="countDownLimit"></app-disptimer>
+      </div>
+      <div class="col-md-7 col-sm-7 col-12">
+        <app-tcount
+          [(counterLimit)]="countDownLimit"
+          (countDownStarted)="onCountDownStart($event)"
+          (countDownReset)="onCountDownReset()"
+          [countDownLog]="countDownLog"
+        >
+        </app-tcount>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-5 col-sm-5 col-12 margin-top-10">
+        <app-tlogs [countDownLog]="countDownLog"></app-tlogs>
+      </div>
+      <div class="col-md-7 col-sm-7 col-12 margin-top-10">
+        <app-tlimit
+          [countStarted]="countDownStartedCount"
+          [countPaused]="countDownPausedCount"
+        ></app-tlimit>
+      </div>
+    </div>
+  </div>
+</div>

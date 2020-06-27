@@ -16,6 +16,11 @@ import { BoxComponent } from './box/box.component';
 import { StudentsComponent } from './students/students.component';
 
 import { DynamicDivComponent } from './dynamic-div/dynamic-div.component';
+import { CounterComponent } from './counter/counter.component';
+import { TcountComponent } from './counter/tcount/tcount.component';
+import { TlogsComponent } from './counter/tlogs/tlogs.component';
+import { TlimitComponent } from './counter/tlimit/tlimit.component';
+import { DisptimerComponent } from './counter/disptimer/disptimer.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +36,16 @@ import { DynamicDivComponent } from './dynamic-div/dynamic-div.component';
     StudentsComponent,
 
     DynamicDivComponent,
+
+    CounterComponent,
+
+    DisptimerComponent,
+
+    TcountComponent,
+
+    TlogsComponent,
+
+    TlimitComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],
