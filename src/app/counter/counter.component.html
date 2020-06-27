@@ -2,26 +2,26 @@
   <div class="p1 border">
     <div class="row">
       <div class="col-md-5 col-sm-5 col-12">
-        <app-disptimer [countDownValue]="countDownLimit"></app-disptimer>
+        <app-disptimer [data]="timerValue"></app-disptimer>
       </div>
       <div class="col-md-7 col-sm-7 col-12">
         <app-tcount
-          [(counterLimit)]="countDownLimit"
-          (countDownStarted)="onCountDownStart($event)"
-          (countDownReset)="onCountDownReset()"
-          [countDownLog]="countDownLog"
+          [(timerNumber)]="timerValue"
+          (timerStart)="onTimerStart($event)"
+          (timerReset)="onTimerReset()"
+          [timerlogs]="timerObject"
         >
         </app-tcount>
       </div>
     </div>
     <div class="row">
       <div class="col-md-5 col-sm-5 col-12 margin-top-10">
-        <app-tlogs [countDownLog]="countDownLog"></app-tlogs>
+        <app-tlogs [logTimer]="timerObject"></app-tlogs>
       </div>
       <div class="col-md-7 col-sm-7 col-12 margin-top-10">
         <app-tlimit
-          [countStarted]="countDownStartedCount"
-          [countPaused]="countDownPausedCount"
+          [start]="startedCountValue"
+          [paused]="pausedCountValue"
         ></app-tlimit>
       </div>
     </div>

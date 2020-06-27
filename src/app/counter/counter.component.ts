@@ -6,60 +6,50 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./counter.component.css'],
 })
 export class CounterComponent implements OnInit {
-  countDownLimit = 0;
-  countDownLog: { timestamp: string; status: boolean; value: number }[] = [];
-  countDownStatus = false;
-  countDownStartedCount = 0;
-  counter: any;
-  countDownPausedCount = 0;
+  timerValue = 0;
+  timerObject: { timestamp: string; status: boolean; value: number }[] = [];
+  timerStarted = false;
+  startedCountValue = 0;
+  pausedCountValue = 0;
+  myCounter: any;
 
   constructor() {}
 
   ngOnInit(): void {}
 
   // Event from tcount component for countdown working
-  onCountDownStart(event) {
+  onTimerStart(event) {
     console.log('fdffd');
     debugger;
-    this.countDownLog.push({
+    this.timerObject.push({
       timestamp: this.getDateFormat(new Date().toString()),
-      status: event.counterStatus,
-      value: this.countDownLimit,
+      status: event.statusTimer,
+      value: this.timerValue,
     });
-    this.countDownStatus = event.counterStatus;
-    if (this.countDownStatus) {
-      this.countDownLimit = this.countDownLimit
-        ? this.countDownLimit
-        : event.countdownCurrentValue;
-      this.countDownStartedCount++;
-      this.counter = setInterval(() => {
-        if (this.countDownStatus && this.countDownLimit) {
-          this.countDownLimit = this.countDownLimit - 1;
+    this.timerStarted = event.statusTimer;
+    if (this.timerStarted) {
+      this.timerValue = this.timerValue ? this.timerValue : event.valueTimer;
+      this.startedCountValue++;
+      this.myCounter = setInterval(() => {
+        if (this.timerStarted && this.timerValue) {
+          this.timerValue = this.timerValue - 1;
         } else {
-          clearInterval(this.counter);
+          clearInterval(this.myCounter);
         }
       }, 1000);
     } else {
-      this.countDownPausedCount++;
-      clearInterval(this.counter);
+      this.pausedCountValue++;
+      clearInterval(this.myCounter);
     }
   }
 
-  // runCounter = () => {
-  //   if (this.countDownStatus && this.countDownLimit) {
-  //     this.countDownLimit = this.countDownLimit - 1;
-  //   } else {
-  //     clearInterval(this.counter);
-  //   }
-  // };
-
   // on Reset event
-  onCountDownReset() {
-    clearInterval(this.counter);
-    this.countDownLimit = 0;
-    this.countDownStartedCount = 0;
-    this.countDownPausedCount = 0;
-    this.countDownLog = [];
+  onTimerReset() {
+    clearInterval(this.myCounter);
+    this.timerValue = 0;
+    this.startedCountValue = 0;
+    this.pausedCountValue = 0;
+    this.timerObject = [];
   }
 
   // Formating Date in desired manner

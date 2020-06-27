@@ -4,21 +4,26 @@
     type="number"
     min="0"
     #timervalue
-    value="counterLimit"
+    [value]="timerNumber"
     class="form-control"
     [disabled]="!firstStart"
   />
 </div>
 <div>
-  <button
-    class="btn btn-primary"
-    (click)="onCountDownRun(timervalue.value)"
-  >
+  <button class="btn btn-primary" (click)="onStart(timervalue.value)">
     Start/Pause
   </button>
-  <button class="btn btn-danger" (click)="onCountDownReset()">Reset</button>
+  <button class="btn btn-danger" (click)="onReset()">Reset</button>
   <!-- <p>{{ counterLimit }}</p> -->
 </div>
-<p *ngFor="let status of countDownLog">
-  {{ !status.status ? "Paused at " + status.value : "" }}
-</p>
+
+<ul
+  *ngIf="timerlogs.length > 0"
+  [ngClass]="timerlogs.length > 6 ? 'scroll' : ''"
+>
+  <li *ngFor="let time of timerlogs">
+    <span class="font-weight-bold">{{
+      !time.status ? "Paused at " + time.value : ""
+    }}</span>
+  </li>
+</ul>

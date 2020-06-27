@@ -6,7 +6,7 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./disptimer.component.css'],
 })
 export class DisptimerComponent implements OnInit {
-  @Input() countDownValue: number;
+  @Input() data: number;
   constructor() {}
 
   ngOnInit(): void {}

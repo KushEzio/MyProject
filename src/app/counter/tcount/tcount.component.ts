@@ -8,9 +8,9 @@ import {
   ElementRef,
 } from '@angular/core';
 
-interface CounterInfo {
-  countdownCurrentValue: number;
-  counterStatus: boolean;
+interface MyTimer {
+  valueTimer: number;
+  statusTimer: boolean;
 }
 
 @Component({
@@ -19,13 +19,12 @@ interface CounterInfo {
   styleUrls: ['./tcount.component.css'],
 })
 export class TcountComponent implements OnInit {
-  @Input() counterLimit: number;
-  countDownStatus: boolean;
-  @Output() countDownStarted = new EventEmitter<CounterInfo>();
+  @Input() timerNumber: number;
+  timerStatus: boolean;
+  @Output() timerStart = new EventEmitter<MyTimer>();
   @ViewChild('timervalue') inputTxt: ElementRef;
-  @Output() countDownReset = new EventEmitter<any>();
-  @Input() countDownLog: {
-    timestamp: Date;
+  @Output() timerReset = new EventEmitter<any>();
+  @Input() timerlogs: {
     status: boolean;
     value: number;
   }[] = [];
@@ -36,34 +35,32 @@ export class TcountComponent implements OnInit {
   ngOnInit(): void {}
 
   // Function fired at Start/Pause Button
-  onCountDownRun(values: number) {
-    debugger;
-    // console.log('onCountDownRun' + values);
-    this.countDownStatus = !this.countDownStatus;
-    const val = values;
+  onStart(values: number) {
+    // console.log('onStart' + values);
+    this.timerStatus = !this.timerStatus;
+    const myval = values;
     if (this.firstStart === true) {
       this.firstStart = false;
-      this.counterLimit = val;
+      this.timerNumber = myval;
     }
-    if (val > 0) {
-      if (this.counterLimit === 0) {
+    if (myval > 0) {
+      if (this.timerNumber === 0) {
       } else {
-        this.counterLimit = val;
-        this.countDownStarted.emit({
-          countdownCurrentValue: this.counterLimit,
-          counterStatus: this.countDownStatus,
+        this.timerNumber = myval;
+        this.timerStart.emit({
+          valueTimer: this.timerNumber,
+          statusTimer: this.timerStatus,
         });
       }
     }
   }
 
   // Function fired at Reset button and emit event
-  onCountDownReset() {
-    debugger;
-    this.countDownStatus = false;
-    this.counterLimit = 0;
+  onReset() {
+    this.timerStatus = false;
+    this.timerNumber = 0;
     this.inputTxt.nativeElement.value = 0;
-    this.countDownReset.emit();
+    this.timerReset.emit();
     this.firstStart = true;
   }
 }

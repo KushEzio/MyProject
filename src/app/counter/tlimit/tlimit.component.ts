@@ -6,9 +6,9 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./tlimit.component.css'],
 })
 export class TlimitComponent implements OnInit {
-  @Input() countStarted = 0;
-  @Input() countPaused = 0;
-  
+  @Input() start = 0;
+  @Input() paused = 0;
+
 
   constructor() {}
 
