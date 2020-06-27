@@ -13,9 +13,6 @@ export class StudentsComponent implements OnInit {
   students: Students[] = [];
   launchStudents: any;
   mycol: string;
-  // fclick: boolean = false;
-  // sclick: boolean;
-  // tclick: boolean;
 
   header: any;
   order: number;
@@ -36,58 +33,36 @@ export class StudentsComponent implements OnInit {
         };
       });
       this.students = [...this.launchStudents];
-      // console.log(this.students);
       this.header = Object.keys(this.students[0]);
-      // console.log(this.header);
     });
   }
   sorting(event: any) {
-    // console.log(event.target.innerHTML);
     this.mycol = event.target.innerHTML;
-    // if (this.mycol == 'title') {
-    //   if (this.fclick == false) {
-    //     this.sort_by_key_asc(this.students, this.mycol);
-    //     this.fclick = true;
-    //   }
-    // }
-    // this.lastorder = this.mycol;
-    // this.sort_by_key_asc(this.students, this.mycol);
     this.sort_by_key_all(this.students, this.mycol, this.order);
-    // this.sort_by_key(this.students, this.mycol);
   }
 
   sort_by_key_all(array, key, order) {
     key = key.trim();
     if (key !== this.lastorder) {
-      // alert(key + order);
       this.order = 1;
       this.lastorder = key;
       return array.sort((a, b) =>
         a[key] < b[key] ? -1 : a[key] > b[key] ? 1 : 0
       );
     } else {
-      // alert(key + order);
       if (order === 0 && key === this.lastorder) {
         this.order += 1;
         return array.sort((a, b) => {
-          const x = a[key];
-          const y = b[key];
-          return x < y ? -1 : x > y ? 1 : 0;
+          return a[key] < b[key] ? -1 : a[key] > b[key] ? 1 : 0;
         });
       } else if (order === 1) {
         this.order += 1;
         return array.sort((a, b) => {
-          const x = a[key];
-          const y = b[key];
-          return x > y ? -1 : x < y ? 1 : 0;
+          return a[key] > b[key] ? -1 : a[key] < b[key] ? 1 : 0;
         });
       } else {
         this.order = 0;
         this.lastorder = '';
-        // console.log(this.students);
-        // console.log(this.launchStudents);
-
-        // this.students = this.launchStudents;
         this.students = [...this.launchStudents];
         return this.students;
       }
