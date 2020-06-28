@@ -6,8 +6,6 @@ import { Subject } from 'rxjs';
 })
 export class MytimeService {
   constructor() {}
-  // destroy$: Subject<boolean> = new Subject<boolean>();
-  // private messageSource = new BehaviorSubject(0);
   timerEmitter = new Subject<{
     valueTimer: number;
     statusTimer: boolean;

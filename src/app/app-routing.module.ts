@@ -18,22 +18,26 @@ const routes: Routes = [
     loadChildren: () =>
       import('./timer/timer.module').then((m) => m.TimerModule),
   },
-  { path: 'timer2', component: Timer2Component },
+  {
+    path: 'timer2',
+    loadChildren: () =>
+      import('./timer2/timer2.module').then((m) => m.ServiceTimerModule),
+  },
+  // { path: 'timer2', component: Timer2Component },
   { path: 'box', component: BoxComponent },
   { path: 'students', component: StudentsComponent },
   { path: 'dynamicDiv', component: DynamicDivComponent },
-  // counter
   { path: 'counter', component: CounterComponent },
   { path: '', redirectTo: '/box', pathMatch: 'full' },
 ];
 
 @NgModule({
   imports: [
-    // RouterModule.forRoot(routes),
-    RouterModule.forRoot(routes, {
-      preloadingStrategy: PreloadAllModules,
-      enableTracing: false,
-    }),
+    RouterModule.forRoot(routes),
+    // RouterModule.forRoot(routes, {
+    //   preloadingStrategy: PreloadAllModules,
+    //   enableTracing: false,
+    // }),
   ],
 
   exports: [RouterModule],

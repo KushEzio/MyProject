@@ -23,9 +23,7 @@ export class Count2Component implements OnInit, OnDestroy {
   firstStart = true;
   timerEmitter: Subscription;
   pausedCountEmitter: Subscription;
-  constructor(private myTime: MytimeService) {}
-
-  ngOnInit(): void {
+  constructor(private myTime: MytimeService) {
     this.timerEmitter = this.myTime.timerEmitter.subscribe((value) => {
       this.timerNumber = value.valueTimer;
       this.timerStatus = value.statusTimer;
@@ -35,6 +33,8 @@ export class Count2Component implements OnInit, OnDestroy {
       this.timerlogs.push(value);
     });
   }
+
+  ngOnInit(): void {}
 
   onStart(values: number) {
     debugger;
@@ -56,16 +56,16 @@ export class Count2Component implements OnInit, OnDestroy {
   }
 
   onReset() {
+    this.firstStart = true;
     this.myTime.timerReset.next(true);
     this.timerStatus = false;
     this.inputTxt.nativeElement.value = 0;
     this.timerNumber = 0;
     this.timerlogs = [];
-    this.firstStart = true;
   }
 
   ngOnDestroy() {
-    this.myTime.timerEmitter.unsubscribe();
-    this.myTime.pausedLogValue.unsubscribe();
+    // this.myTime.timerEmitter.unsubscribe();
+    // this.myTime.pausedLogValue.unsubscribe();
   }
 }

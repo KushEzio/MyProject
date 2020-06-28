@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { MytimeService } from '../mytime.service';
 import { Subscription } from 'rxjs';
 
@@ -7,15 +7,13 @@ import { Subscription } from 'rxjs';
   templateUrl: './displaytimer2.component.html',
   styleUrls: ['./displaytimer2.component.css'],
 })
-export class Displaytimer2Component implements OnInit {
+export class Displaytimer2Component implements OnInit, OnDestroy {
   data = 0;
   timerStarted = false;
   myCounter: any;
   timerEmitter: Subscription;
   timerReset: Subscription;
-  constructor(private myTime: MytimeService) {}
-
-  ngOnInit(): void {
+  constructor(private myTime: MytimeService) {
     this.timerEmitter = this.myTime.timerEmitter.subscribe((data) => {
       this.timerStarted = data.statusTimer;
       if (this.timerStarted) {
@@ -39,8 +37,12 @@ export class Displaytimer2Component implements OnInit {
     });
   }
 
+  ngOnInit(): void {}
+
   ngOnDestroy() {
-    this.timerReset.unsubscribe();
+    // this.timerReset.unsubscribe();
     this.timerEmitter.unsubscribe();
+    // this.myTime.pausedLogValue.unsubscribe();
+    clearInterval(this.myCounter);
   }
 }
