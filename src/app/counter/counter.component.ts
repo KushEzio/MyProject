@@ -20,7 +20,7 @@ export class CounterComponent implements OnInit {
   // Event from tcount component for countdown working
   onTimerStart(event) {
     console.log('fdffd');
-    debugger;
+    // debugger;
     this.timerObject.push({
       mytime: this.getDateFormat(new Date().toString()),
       status: event.statusTimer,

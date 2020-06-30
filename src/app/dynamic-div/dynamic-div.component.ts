@@ -26,10 +26,10 @@ export class DynamicDivComponent implements OnInit, OnDestroy, AfterViewInit {
     // this.numbers = [...this.numbers, ...numbers];
     this.count += 1;
 
-    var mydiv = this.render.createElement('div');
+    let mydiv = this.render.createElement('div');
     this.render.addClass(mydiv, 'text-center');
     this.render.addClass(mydiv, 'wrapper');
-    var mybutton = this.render.createElement('button');
+    let mybutton = this.render.createElement('button');
     this.render.addClass(mybutton, 'btn-primary');
     this.render.addClass(mybutton, 'btn');
     this.render.setAttribute(mybutton, 'myid', `${this.count}`);
