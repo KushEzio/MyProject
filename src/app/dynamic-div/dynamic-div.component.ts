@@ -33,7 +33,7 @@ export class DynamicDivComponent implements OnInit, OnDestroy, AfterViewInit {
     this.render.addClass(mybutton, 'btn-primary');
     this.render.addClass(mybutton, 'btn');
     this.render.setAttribute(mybutton, 'myid', `${this.count}`);
-
+    // console.log(this.count);
     this.render.listen(mybutton, 'click', (myevent) => {
       // console.log(this.render.)
       console.log(myevent.target.innerHTML);
@@ -49,7 +49,7 @@ export class DynamicDivComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   constructor(private render: Renderer2, private ele: ElementRef) {
-    this.numbers = Array(21)
+    this.numbers = Array(28)
       .fill(0)
       .map((x, i) => i + 1);
   }
